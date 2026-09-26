@@ -16,6 +16,11 @@ export type User = {
   email: string;
 };
 
+export type MeResponse = {
+  success: boolean;
+  user: User;
+};
+
 export type AuthResponse = {
   success: boolean;
   message: string;
