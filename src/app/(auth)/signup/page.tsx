@@ -20,9 +20,11 @@ import type { SignupData } from "@/types/auth";
 import { toast } from "sonner";
 import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { signup } = useAuth();
   const router = useRouter();
 
   const {
@@ -35,9 +37,10 @@ const SignupPage = () => {
 
   const onSubmit = async (data: SignupData) => {
     try {
-      const result = await api.signup(data);
+      await signup(data);
 
-      toast.success(result.message || "Account created successfully!");
+      toast.success("Account created successfully!");
+
       router.push("/dashboard");
     } catch (error) {
       const message =

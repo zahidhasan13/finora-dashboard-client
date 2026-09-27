@@ -9,13 +9,14 @@ import {
 } from "react";
 
 import { api } from "@/lib/api";
-import type { LoginData, User } from "@/types/auth";
+import type { LoginData, SignupData, User } from "@/types/auth";
 
 type AuthContextType = {
   user: User | null;
   loading: boolean;
   isAuthenticated: boolean;
   login: (data: LoginData) => Promise<void>;
+  signup: (data: SignupData) => Promise<void>;
   logout: () => Promise<void>;
 };
 
@@ -35,6 +36,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const signup = async (data: SignupData) => {
+    const result = await api.signup(data);
+
+    const me = await api.getMe();
+
+    setUser(me.user);
   };
 
   const login = async (data: LoginData) => {
@@ -63,6 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         loading,
         isAuthenticated: !!user,
         login,
+        signup,
         logout,
       }}
     >

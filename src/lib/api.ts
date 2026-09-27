@@ -65,7 +65,7 @@ export const api = {
     return result;
   },
   logout: async () => {
-    const response = await fetch(`${API_URL}/auth/logout`, {
+    const response = await fetch(`${API_URL}/logout`, {
       method: "POST",
       credentials: "include",
     });
