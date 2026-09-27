@@ -3,6 +3,8 @@
 import React from "react";
 import { Menu, Search, Bell } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import PageTitle from "./PageTitle";
 
 export type UserType = {
   name: string;
@@ -14,6 +16,8 @@ type SidebarProps = {
 };
 
 const Navbar = ({ user }: SidebarProps) => {
+  const router = useRouter();
+
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white px-4 md:px-6">
       {/* Left side: Hamburger menu & Search input */}
@@ -25,13 +29,8 @@ const Navbar = ({ user }: SidebarProps) => {
           <Menu className="h-5 w-5" />
         </button>
 
-        <div className="hidden sm:block relative w-full max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search transactions, invoices, or anything..."
-            className="w-full rounded-xl border border-gray-200 bg-white py-2 pl-9 pr-4 text-sm text-gray-700 placeholder-gray-400 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
-          />
+        <div className="relative w-full max-w-sm">
+          <PageTitle />
         </div>
       </div>
 

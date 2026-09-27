@@ -31,7 +31,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <Navbar user={user} />
 
         {/* Page Children Content */}
-        <main className="flex-1 px-8 pt-9 pb-14 md:p-6 overflow-y-auto">
+        <main className="flex-1 md:px-8 md:pt-9 md:pb-14 p-4 overflow-y-auto">
           {children}
         </main>
       </div>

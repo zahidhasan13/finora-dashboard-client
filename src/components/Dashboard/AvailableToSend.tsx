@@ -15,7 +15,7 @@ const AvailableToSend = () => {
         </p>
       </div>
       <Link
-        href="/wallets"
+        href="/dashboard/wallets"
         className="mt-6 inline-flex items-center gap-1 text-xs font-bold text-blue-600"
       >
         View wallets <ArrowRight className="w-3.5 h-3.5" />
