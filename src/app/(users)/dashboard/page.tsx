@@ -1,5 +1,11 @@
+import Greeting from "@/components/Dashboard/Greeting";
+
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  return (
+    <>
+      <Greeting />
+    </>
+  );
 };
 
 export default DashboardPage;

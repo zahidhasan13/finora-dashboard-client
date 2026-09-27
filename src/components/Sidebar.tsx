@@ -20,6 +20,15 @@ import {
   Sparkles,
 } from "lucide-react";
 
+export type UserType = {
+  name: string;
+  email: string;
+};
+
+type SidebarProps = {
+  user: UserType | null;
+};
+
 const navSections = [
   {
     title: "MAIN",
@@ -48,7 +57,7 @@ const navSections = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ user }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -135,9 +144,9 @@ const Sidebar = () => {
           </div>
           <div className="overflow-hidden">
             <p className="text-sm font-semibold text-white truncate leading-tight">
-              Zahid Hasan
+              {user?.name}
             </p>
-            <p className="text-xs text-slate-400 truncate">zahid@finora.com</p>
+            <p className="text-xs text-slate-400 truncate">{user?.email}</p>
           </div>
         </div>
       </div>
