@@ -4,14 +4,14 @@ import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 import { useAuth } from "@/context/AuthContext";
 import DashboardSkeleton from "@/components/skeleton/DashboardSkeleton";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 type DashboardLayoutProps = {
   children: ReactNode;
 };
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  const { user, loading } = useAuth();
+  const { user, loading, logout } = useAuth();
   const pathname = usePathname();
   console.log(user);
 
@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar - Desktop view */}
       <div className="hidden md:block w-64 shrink-0">
-        <Sidebar user={user} />
+        <Sidebar user={user} logout={logout} />
       </div>
 
       {/* Main Content Area */}

@@ -4,6 +4,7 @@ import Greeting from "@/components/Dashboard/Greeting";
 import QuickAction from "@/components/Dashboard/QuickAction";
 import RevenueChart from "@/components/Dashboard/RevenueChart";
 import SpendingChart from "@/components/Dashboard/SpendingChart";
+import RecentTransactions from "@/components/Transactions/RecentTransactions";
 
 const DashboardPage = () => {
   return (
@@ -18,6 +19,7 @@ const DashboardPage = () => {
         <RevenueChart />
         <SpendingChart />
       </section>
+      <RecentTransactions />
     </>
   );
 };

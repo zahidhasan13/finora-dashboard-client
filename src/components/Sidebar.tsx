@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {
   Activity,
@@ -18,7 +18,9 @@ import {
   Settings,
   Users,
   Sparkles,
+  LogOut,
 } from "lucide-react";
+import { toast } from "sonner";
 
 export type UserType = {
   name: string;
@@ -27,6 +29,7 @@ export type UserType = {
 
 type SidebarProps = {
   user: UserType | null;
+  logout: () => Promise<void>;
 };
 
 const navSections = [
@@ -57,11 +60,20 @@ const navSections = [
   },
 ];
 
-const Sidebar = ({ user }: SidebarProps) => {
+const Sidebar = ({ user, logout }: SidebarProps) => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+
+    toast.success("Logout successful!");
+
+    router.push("/login");
+  };
 
   return (
-    <aside className="w-64 min-h-screen bg-[#0B1528] text-slate-300 p-4 flex flex-col justify-between font-sans">
+    <aside className="w-64 min-h-full bg-[#0B1528] text-slate-300 p-4 flex flex-col justify-between font-sans">
       <div>
         {/* Logo & Close Button */}
         <div className="mb-6 flex items-center justify-between px-2">
@@ -148,6 +160,15 @@ const Sidebar = ({ user }: SidebarProps) => {
             </p>
             <p className="text-xs text-slate-400 truncate">{user?.email}</p>
           </div>
+        </div>
+        <div className="">
+          <button
+            onClick={handleLogout}
+            className="flex items-center justify-center gap-2 rounded-lg w-full bg-red-50 px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-900/50"
+          >
+            <span>Logout</span>
+            <LogOut className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </aside>
